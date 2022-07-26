@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+// REACT
+import React from "react";
 
-function App() {
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Counter from "./Couter";
+import Header from "./Header";
+import Welcome from "./Welcome";
+
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
+import Greeting from "./Greeting";
+import HTTP from "./HTTP";
+
+const GlobalStyle = createGlobalStyle`
+  ${reset}
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+`;
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <GlobalStyle />
+      <Header />
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route path="/counter" element={<Counter />} />
+        <Route path="/greeting" element={<Greeting />} />
+        <Route path="/http" element={<HTTP />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
